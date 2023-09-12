@@ -3,14 +3,14 @@
 #' Use ridge regression and gene network parameters to calculate the actual perturbation effect in single-cell CRISPR screening data.
 #'
 #' @param regscore_list A regression result list calculated by regression_score function.
-#' @param netfc Gene network parameters calculated by fc_extraction
+#' @param net_para Gene network parameters calculated by fc_extraction
 #'
 #' @return A result for PerturbScore
 #' @export
 #'
 #' @examples
-#' pert_score <- perturbscore(reg_score, fc)
-perturbscore <- function(regscore_list, netfc){
+#' pert_score <- perturbscore(reg_score, para)
+perturbscore <- function(regscore_list, net_para){
   if(length(regscore_list) != 2){
     stop("Please choose proper regscore_list from regression_score")
   }
@@ -19,7 +19,7 @@ perturbscore <- function(regscore_list, netfc){
   regscore_p<-regscore_list[[2]]
 
   regobj<-regscore[,order(colnames(regscore))]
-  netobj<-as.matrix(netfc)
+  netobj<-as.matrix(net_para)
   netobj<-netobj[order(rownames(netobj)),]
 
   regnam<-colnames(regobj)

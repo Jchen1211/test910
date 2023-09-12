@@ -16,9 +16,9 @@
 #' p <- pert_feature_plot(pert_score,num=2,features=NULL,perturbations=NULL)
 #' p
 pert_feature_plot<-function(pert_score,num=NULL,features=NULL,perturbations=NULL){
-  res_score<-pert_score[[1]]
+  res_score<-data.frame(pert_score[[1]])
   res_score<-res_score[,order(colnames(res_score))]
-  res_p<-pert_score[[2]]
+  res_p<-data.frame(pert_score[[2]])
   res_p<-res_p[,order(colnames(res_p))]
   res_score<-cbind(rownames(res_score),res_score)
   res_p<-cbind(rownames(res_p),res_p)
@@ -68,5 +68,5 @@ pert_feature_plot<-function(pert_score,num=NULL,features=NULL,perturbations=NULL
           panel.grid = element_blank(),
           legend.key = element_blank()
     )+
-    labs(y=" ",x =paste(paste("Top",num,sep = ""),"perturbed phenotype genes"," "))
+    labs(y="Perturbations",x = "Phenotypes",title = paste(paste("Top",num,sep = ""),"perturbed phenotype genes"," "))
 }
