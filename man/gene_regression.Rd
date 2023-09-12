@@ -6,23 +6,26 @@
 \usage{
 gene_regression(
   count,
-  indmatrix,
+  cell_ident,
   selected = NULL,
-  neg,
+  ctrl,
   gene_frac = 0.01,
-  slot = "scale.data"
+  mt.percent = 5,
+  slot = "scale"
 )
 }
 \arguments{
 \item{count}{A Seurat object.Noted that the object has to be normalized and scaled by standard procedure.}
 
-\item{indmatrix}{A perturbation-cell matrix calculated by indmatrix function.}
+\item{cell_ident}{A perturbation-cell matrix calculated by cell_info function.}
 
-\item{selected}{Interested features list. Default: NULL.}
+\item{selected}{High-variable gene number. Default: 2000.}
 
-\item{neg}{A parameter for control cell. Non-perturbed cells are recommended to assign NT.}
+\item{ctrl}{A parameter for control cell. Non-perturbed cells are recommended to assign NT.}
 
 \item{gene_frac}{A parameter for filtering low expression genes. Default: 0.01.}
+
+\item{mt.percent}{A parameter for filtering cells with high expression of mitochondrial genes. Default: 5.}
 
 \item{slot}{A parameter for extracting data from Seurat object. Default: 'scale.data'.}
 }
@@ -33,6 +36,6 @@ A list for gene regression. Xmat represents cell identity matrix that contains c
 Construct data for gene regression
 }
 \examples{
-mat_reg <- gene_regression(count, ind, selected = NULL,neg,
+mat_reg <- gene_regression(count, ind, selected = 2000,ctrl,
                             gene_frac = 0.01, slot = 'scale.data')
 }

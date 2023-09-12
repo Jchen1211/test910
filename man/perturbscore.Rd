@@ -4,12 +4,12 @@
 \alias{perturbscore}
 \title{Calculate PerturbScore}
 \usage{
-perturbscore(regscore_list, netfc)
+perturbscore(regscore_list, net_para)
 }
 \arguments{
 \item{regscore_list}{A regression result list calculated by regression_score function.}
 
-\item{netfc}{Gene network parameters calculated by fc_extraction}
+\item{net_para}{Gene network parameters calculated by fc_extraction}
 }
 \value{
 A result for PerturbScore
@@ -18,5 +18,5 @@ A result for PerturbScore
 Use ridge regression and gene network parameters to calculate the actual perturbation effect in single-cell CRISPR screening data.
 }
 \examples{
-pert_score <- perturbscore(reg_score, fc)
+pert_score <- perturbscore(reg_score, para)
 }

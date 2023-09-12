@@ -7,12 +7,13 @@
 regression_score(
   count,
   sgrna,
-  negctr,
-  selected_gene = NULL,
-  permut = NULL,
+  ctrl,
+  nfeatures = 2000,
+  n_permut = NULL,
   paramt = 0.01,
   filt = 0.01,
-  slot = "scale.data"
+  mt.percent = 5,
+  slot = "scale"
 )
 }
 \arguments{
@@ -20,15 +21,17 @@ regression_score(
 
 \item{sgrna}{A perturbation-cell data frame. Noted that the data frame contain perturbation and cell parameters.}
 
-\item{negctr}{A parameter for non-perturbed cells which is recommended as NT.}
+\item{ctrl}{A parameter for non-perturbed cells which is recommended as NT.}
 
-\item{selected_gene}{Interested features list. Default: NULL.}
+\item{nfeatures}{High-variable gene number. Default: 2000.}
 
-\item{permut}{The number of permutations for p value. Default: NULL.}
+\item{n_permut}{The number of permutations for p value. Default: NULL.}
 
 \item{paramt}{The Regularization coefficient. Default: 0.01.}
 
 \item{filt}{A parameter for filtering low expression genes. Default: 0.01.}
+
+\item{mt.percent}{A parameter for filtering cells with high expression of mitochondrial genes. Default: 5.}
 
 \item{slot}{A parameter for extracting data from Seurat object. Default: 'scale.data'.}
 }
@@ -39,6 +42,6 @@ A list for regression result.
 Calculate perturbation effect by ridge regression in single-cell CRISPR screening data.
 }
 \examples{
-reg_score <- regression_score(count,sgrna,negctr,selected_gene = NULL,
-                               permut = 1000,paramt = 0.01,filt = 0.01,slot = 'scale.data')
+reg_score <- regression_score(count,sgrna,ctr,nfeatures = 2000,
+                               n_permut = 1000,paramt = 0.01,filt = 0.01,slot = 'scale.data')
 }
